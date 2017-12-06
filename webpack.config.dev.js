@@ -42,7 +42,7 @@ module.exports = {
         include: path.join(__dirname, 'src'),
         use: [
           {
-            loader: 'babel-loader?cacheDirectory=true',
+            loader: 'babel-loader?cacheDirectory=true',//缓存配置，提高编译速度
             // options: {
             //   presets: ['@babel/preset-env'],
             //   plugins: []
@@ -53,7 +53,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(), //模块热加载插件
   ],
   resolve: {
     alias: {
