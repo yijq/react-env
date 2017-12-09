@@ -1,6 +1,6 @@
 const path = require('path')
 const webpack= require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin') //index.html模板
 
 module.exports = {
   /* 开发使用的服务器 */
@@ -23,15 +23,18 @@ module.exports = {
   },
   devtool: 'inline-source-map', //便于调试,可显示错误信息详细地址,soure中可以打断点
   /*入口*/
-  entry: [
-    'react-hot-loader/patch',
-    path.join(__dirname, 'src/index.js')
-  ],
+  entry: {
+    app: [
+      'react-hot-loader/patch',
+      path.join(__dirname, 'src/index.js')
+    ],
+    vender: ['react','react-dom','react-router-dom','redux','react-redux']
+  },
   
   /*输出到dist文件夹，输出文件名字为bundle.js*/
   output: {
       path: path.join(__dirname, './dist'),
-      filename: 'bundle.js',
+      filename: '[name].[hash].js',
       chunkFilename: '[name].[chunkhash].js'
   },
 
@@ -81,10 +84,16 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(), //模块热加载插件
+    //模块热加载插件
+    new webpack.HotModuleReplacementPlugin(), 
+    //index.html模板
     new HtmlWebpackPlugin({
       template: './public/index.html',
       inject: true
+    }),
+    //公共库的提取
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vender'
     })
   ],
   resolve: {
