@@ -1,8 +1,10 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
+import { Provider } from 'react-redux'
 
 import getRouter from './router/router.jsx'
+import store from './redux/store'
 
 // const win  = window
 // const params = win.location.search
@@ -24,10 +26,13 @@ import getRouter from './router/router.jsx'
 // }
 
 //react-hot-loader
+console.log(store.getState())
 const renderWithHotReload = ( RootElement ) => {
   render(
     <AppContainer>
-      {RootElement}
+      <Provider store={store}>
+        {RootElement}
+      </Provider>
     </AppContainer>
     ,
     document.querySelector('#app')

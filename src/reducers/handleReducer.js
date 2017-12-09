@@ -1,12 +1,15 @@
-import { INCREMENT, DECREMENT } from '../actions/actionTypes'
+import { INCREMENT, DECREMENT, RESET } from '../actions/actionTypes'
 
-const handle = ( action, state = {count: 0} ) => {
+const handle = ( state = {count: 0}, action ) => {
   switch(action.type) {
-    case INCREMENT:{
-      return {...state,count: ++state.count}
+    case INCREMENT: {
+      return { ...state, count: ++state.count }
     }
-    case DECREMENT:{
-      return {...state,count: --state.count}
+    case DECREMENT: {
+      return { ...state, count: --state.count }
+    }
+    case RESET: {
+      return { ...state, count: 0 }
     }
     default: {
       return state
