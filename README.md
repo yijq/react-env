@@ -1,5 +1,8 @@
 ## react环境配置
 
+### tips
+  1. 路由跳转时还改变组件的状态，使组件重新渲染。而使用redux时可以保持组件的状态。
+
 ### 遇到的问题
   1. 解析.jsx的配置
   2. fetch的兼容，`whatwg-fetch`
@@ -9,7 +12,7 @@
 ### 目录
   * [环境初始化](#环境初始化)
   * [webpack的基本用法](#webpack的基本用法)
-  * [使用webpackDevserver](#使用webpackDevserver)
+  * [使用webpackDevServer](#使用webpackDevServer)
 
 ### 环境初始化
   1. 需要安装node环境，使用node自带的npm或者使用cnpm（速度更快）来下载依赖包。
@@ -70,7 +73,7 @@
   4. 执行`./node_modules/.bin/webpack --config webpack.config.dev.js`，在dist文件夹中加上index.html作为模板容器就能查看了。
   5. 上一步执行的`./node_modules/.bin/webpack`是因为webpack是在在项目中安装的，如果全局安装就可以不加`./node_modules/.bin/`。为了简化命令可以在`package.json`的`scripts`中加上`"build-dev": "webpack --config webpack.config.dev.js"`。接下来进行构建时可以直接用`npm run build-dev`。
 
-### 使用webpackDevserver
+### 使用webpackDevServer
   1. 安装`webpack-dev-server`，webpackDevServer的基本配置，配置完成后运行`./node_modules/.bin/webpack-dev-server --config webpack.config.dev.js --color --progress`，同样也可以在`package.json`中简化命令
   ```
   /* 开发使用的服务器 */
@@ -153,4 +156,6 @@
         })
       }
     ```
+
+### 
 

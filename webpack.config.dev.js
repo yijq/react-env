@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack= require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   /* 开发使用的服务器 */
@@ -30,12 +31,14 @@ module.exports = {
   /*输出到dist文件夹，输出文件名字为bundle.js*/
   output: {
       path: path.join(__dirname, './dist'),
-      filename: 'bundle.js'
+      filename: 'bundle.js',
+      chunkFilename: '[name].[chunkhash].js'
   },
 
   /* 配置loader */
   module: {
     rules: [
+      /* /\.jsx?$/ */
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
@@ -50,6 +53,7 @@ module.exports = {
           }
         ]
       },
+      /* /\.css$/ */
       {
         test: /\.css$/,
         use: [
@@ -61,11 +65,27 @@ module.exports = {
             }
           }
         ]
+      },
+      /* /\.(png|jpg|gif)$/ */
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192
+            }
+          }
+        ]
       }
     ]
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(), //模块热加载插件
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      inject: true
+    })
   ],
   resolve: {
     alias: {

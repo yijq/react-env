@@ -28,7 +28,7 @@ import './index.css'
 // }
 
 //react-hot-loader
-console.log(store.getState())
+// console.log(store.getState())
 const renderWithHotReload = ( RootElement ) => {
   render(
     <AppContainer>
