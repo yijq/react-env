@@ -6,6 +6,8 @@ import { Provider } from 'react-redux'
 import getRouter from './router/router.jsx'
 import store from './redux/store'
 
+import './index.css'
+
 // const win  = window
 // const params = win.location.search
 // const redirect_uri = decodeURI("http://mall.aodous.org/front")

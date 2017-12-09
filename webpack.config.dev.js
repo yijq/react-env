@@ -20,7 +20,7 @@ module.exports = {
       target: "http://192.168.11.176:8080"
     }
   },
-
+  devtool: 'inline-source-map', //便于调试,可显示错误信息详细地址,soure中可以打断点
   /*入口*/
   entry: [
     'react-hot-loader/patch',
@@ -49,6 +49,18 @@ module.exports = {
             // }
           }
         ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {loader: 'style-loader'},
+          {
+            loader: 'css-loader',
+            options: {
+              module: true
+            }
+          }
+        ]
       }
     ]
   },
@@ -62,4 +74,4 @@ module.exports = {
       router: path.join(__dirname, 'src/router')
     }
   }
-};
+}
