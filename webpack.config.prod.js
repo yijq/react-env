@@ -3,6 +3,7 @@ const webpack= require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin') //index.html模板
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin') //压缩js
 const CleanWebpackPlugin = require('clean-webpack-plugin') //每次打包时清理打包文件夹的内容
+const ExtractTextPlugin = require("extract-text-webpack-plugin"); //提取出css文件
 
 module.exports = {
   devtool: 'cheap-module-source-map', //更注重性能的调试工具
@@ -46,17 +47,32 @@ module.exports = {
         ]
       },
       /* /\.css$/ */
+    //   {
+    //     test: /\.css$/,
+    //     use: [
+    //       {loader: 'style-loader'},
+    //       {
+    //         loader: 'css-loader',
+    //         options: {
+    //           module: true
+    //         }
+    //       }
+    //     ]
+    //   },
+
       {
         test: /\.css$/,
-        use: [
-          {loader: 'style-loader'},
-          {
-            loader: 'css-loader',
-            options: {
-              module: true
-            }
-          }
-        ]
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: [
+              {
+                loader:"css-loader",
+                options: {
+                    module: true
+                }
+              }
+          ]
+        })
       },
       /* /\.(png|jpg|gif)$/ */
       {
@@ -98,7 +114,12 @@ module.exports = {
         name: 'runtime'
     }),
     //清理build文件夹
-    new CleanWebpackPlugin(['build'])
+    new CleanWebpackPlugin(['build']),
+    //抽提出css
+    new ExtractTextPlugin({
+        filename: '[name].[contenthash:5].css',
+        allChunks: true
+    }),
   ],
   resolve: {
     alias: {
