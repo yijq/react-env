@@ -94,7 +94,13 @@ module.exports = {
     //公共库的提取
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vender'
-    })
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+          'NODE_ENV': JSON.stringify('development'),
+          "MY_VAR": JSON.stringify("Ash Dhaka")
+      }
+  }),
   ],
   resolve: {
     alias: {

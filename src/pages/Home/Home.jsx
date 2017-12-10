@@ -2,6 +2,8 @@ import React from 'react'
 import Counter from '../../container/Counter/Counter.jsx'
 import style from './home.css'
 
+const myVar = process.env.MY_VAR
+console.log(myVar)
 class Home extends React.Component {
   constructor(props) {
     super(props)
@@ -20,7 +22,7 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <h2 className={style.home}>Home</h2>
+        <h2 className={style.home}>Home123</h2>
         <div>当前计数{this.state.count}</div>
         <div>
             <button onClick={this._handleClick}>increment</button>

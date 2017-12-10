@@ -16,9 +16,14 @@ module.exports = {
   
   /*输出到dist文件夹，输出文件名字为bundle.js*/
   output: {
+      //输出文件的位置
       path: path.join(__dirname, './build'),
+      //业务逻辑代码的输出位置
       filename: '[name].[chunkhash].js',
-      chunkFilename: '[name].[chunkhash].js'
+      //公共库的输出文件
+      chunkFilename: '[name].[chunkhash].js',
+      //代码部署静态服务器的地址
+      publicPath: '/'
   },
 
   /* 配置loader */
@@ -66,6 +71,7 @@ module.exports = {
       }
     ]
   },
+  /* 插件配置 */
   plugins: [
     //index.html模板
     new HtmlWebpackPlugin({
