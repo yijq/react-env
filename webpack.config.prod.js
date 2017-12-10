@@ -76,7 +76,14 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor'
     }),
+    //压缩js
     new UglifyJSPlugin(),
+    //指定环境，这个位置可以定义环境变量
+    new webpack.DefinePlugin({
+        'process.env': {
+            'NODE_ENV': JSON.stringify('production')
+        }
+    })
   ],
   resolve: {
     alias: {
