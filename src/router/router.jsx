@@ -10,8 +10,9 @@ import Bundle from './Bundle'
 
 import Home from 'bundle-loader?lazy&name=home!../pages/Home/Home.jsx'
 import About from 'bundle-loader?lazy&name=about!../pages/About/About.jsx'
+import NotFound from 'bundle-loader?lazy&name=notfound!../pages/NotFound/NotFound.jsx'
 
-const Loading = () => <div>Loading...</div>
+const Loading = () => <h2>Loading...</h2>
 
 const createComponent = (component) => () => (
   <Bundle load={component}>
@@ -37,6 +38,7 @@ const getRouter = () => (
         {/* <Route exact path={`/`} component={Home}/> */}
         <Route path={`/about`} component={createComponent(About)}/>
         {/* <Route path={`/about`} component={About}/> */}
+        <Route component={createComponent(NotFound)} />
       </Switch>
     </div>
   </Router>
