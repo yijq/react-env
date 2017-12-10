@@ -83,6 +83,12 @@ module.exports = {
         'process.env': {
             'NODE_ENV': JSON.stringify('production')
         }
+    }),
+    //保证vendor的hash值不改变
+    new webpack.HashedModuleIdsPlugin(),
+    //保证vendor的hash值不改变，必须在vendor后面引用
+    new webpack.optimize.CommonsChunkPlugin({
+        name: 'runtime'
     })
   ],
   resolve: {

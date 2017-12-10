@@ -20,7 +20,7 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <h2 className={style.home}>Home123231</h2>
+        <h2 className={style.home}>Home</h2>
         <div>当前计数{this.state.count}</div>
         <div>
             <button onClick={this._handleClick}>increment</button>
