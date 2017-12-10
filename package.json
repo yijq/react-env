@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev-build": "webpack --config webpack.config.dev.js foo=123",
-    "start": "webpack-dev-server --config webpack.config.dev.js --color --progress"
+    "dev-build": "webpack --config webpack.config.dev.js",
+    "start": "webpack-dev-server --config webpack.config.dev.js --color --progress",
+    "build": "webpack --config webpack.config.prod.js"
   },
   "keywords": [
     "react",
@@ -35,6 +36,7 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "style-loader": "^0.19.0",
+    "uglifyjs-webpack-plugin": "^1.1.2",
     "url-loader": "^0.6.2",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.5"

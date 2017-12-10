@@ -3,25 +3,7 @@ const webpack= require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin') //index.html模板
 
 module.exports = {
-  /* 开发使用的服务器 */
-  devServer: {
-    contentBase: path.join(__dirname,'./dist'),
-    // after(app) {},
-    // allowedHosts: [],
-    // before(app) {},
-    // clientLogLevel: "none",
-    // compress: true,
-    historyApiFallback: true,
-    hot: true,
-    // https: true,
-    // index: index.html,
-    // port: 7070,
-    proxy: {
-      context: ["/queryProducts"],
-      target: "http://192.168.11.176:8080"
-    }
-  },
-  devtool: 'inline-source-map', //便于调试,可显示错误信息详细地址,soure中可以打断点
+  devtool: 'cheap-module-source-map', //更注重性能的调试工具
   /*入口*/
   entry: {
     app: [
@@ -34,7 +16,7 @@ module.exports = {
   /*输出到dist文件夹，输出文件名字为bundle.js*/
   output: {
       path: path.join(__dirname, './build'),
-      filename: '[name].[hash].js',
+      filename: '[name].[chunkhash].js',
       chunkFilename: '[name].[chunkhash].js'
   },
 
