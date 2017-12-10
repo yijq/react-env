@@ -2,6 +2,7 @@ const path = require('path')
 const webpack= require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin') //index.html模板
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin') //压缩js
+const CleanWebpackPlugin = require('clean-webpack-plugin') //每次打包时清理打包文件夹的内容
 
 module.exports = {
   devtool: 'cheap-module-source-map', //更注重性能的调试工具
@@ -95,7 +96,9 @@ module.exports = {
     //保证vendor的hash值不改变，必须在vendor后面引用
     new webpack.optimize.CommonsChunkPlugin({
         name: 'runtime'
-    })
+    }),
+    //清理build文件夹
+    new CleanWebpackPlugin(['build'])
   ],
   resolve: {
     alias: {
