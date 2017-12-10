@@ -113,8 +113,8 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
         name: 'runtime'
     }),
-    //清理build文件夹
-    new CleanWebpackPlugin(['build']),
+    //清理build文件夹，不删除api文件夹
+    new CleanWebpackPlugin(['build/*.*']),
     //抽提出css
     new ExtractTextPlugin({
         filename: '[name].[contenthash:5].css',
