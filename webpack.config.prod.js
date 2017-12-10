@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack= require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin') //index.html模板
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin') //压缩js
 
 module.exports = {
   devtool: 'cheap-module-source-map', //更注重性能的调试工具
@@ -10,7 +11,7 @@ module.exports = {
       'react-hot-loader/patch',
       path.join(__dirname, 'src/index.js')
     ],
-    vender: ['react','react-dom','react-router-dom','redux','react-redux']
+    vendor: ['react','react-dom','react-router-dom','redux','react-redux']
   },
   
   /*输出到dist文件夹，输出文件名字为bundle.js*/
@@ -66,17 +67,16 @@ module.exports = {
     ]
   },
   plugins: [
-    //模块热加载插件
-    new webpack.HotModuleReplacementPlugin(), 
     //index.html模板
     new HtmlWebpackPlugin({
-      template: './public/index.html',
+      template: path.join(__dirname, 'public/index.html'),
       inject: true
     }),
     //公共库的提取
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vender'
-    })
+      name: 'vendor'
+    }),
+    new UglifyJSPlugin(),
   ],
   resolve: {
     alias: {
