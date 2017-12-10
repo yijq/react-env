@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin') //index.html模板
 module.exports = {
   /* 开发使用的服务器 */
   devServer: {
-    contentBase: path.join(__dirname,'./dist'),
+    contentBase: path.join(__dirname,'./build'),
     // after(app) {},
     // allowedHosts: [],
     // before(app) {},

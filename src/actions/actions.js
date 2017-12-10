@@ -18,3 +18,10 @@ export const async_action = () => (dispatch,getState) => {
     type: actionTypes.ASYNC_ATCION
   })},2000)
 }
+
+export const getUserInfo = () => {
+  return {
+      types: [actionTypes.GET_USER_INFO_REQUEST, actionTypes.GET_USER_INFO_SUCCESS, actionTypes.GET_USER_INFO_FAIL],
+      promise: client => client.get(`http://localhost:8080/api/user.json`)
+  }
+}
