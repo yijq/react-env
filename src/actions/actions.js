@@ -21,7 +21,14 @@ export const async_action = () => (dispatch,getState) => {
 
 export const getUserInfo = () => {
   return {
-      types: [actionTypes.GET_USER_INFO_REQUEST, actionTypes.GET_USER_INFO_SUCCESS, actionTypes.GET_USER_INFO_FAIL],
-      promise: client => client.get(`http://localhost:8080/api/user.json`)
+    types: [actionTypes.GET_USER_INFO_REQUEST, actionTypes.GET_USER_INFO_SUCCESS, actionTypes.GET_USER_INFO_FAIL],
+    promise: client => client.get(`http://localhost:8080/api/user.json`)
+  }
+}
+
+export const changeTitle = (title) => {
+  return {
+    type: actionTypes.CHANGE_TITLE,
+    title: title
   }
 }

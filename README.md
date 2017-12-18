@@ -158,22 +158,61 @@
     ```
 
 ### 文件路径优化
+  ```
+  resolve: {
+    alias: {
+      pages: path.join(__dirname, 'src/pages'),
+      components: path.join(__dirname, 'src/components'),
+      router: path.join(__dirname, 'src/router')
+    }
+  }
+  ```
 
 ### 添加redux
+  - npm i --save redux react-redux
 
 ### devtool优化
+  - inline-source-map
 
 ### 编译css
+  - style-loader, css-loader, postcss
 
 ### 编译图片
+  - file-loader, url-loader
 
 ### 按需加载
+  - 按路由进行按需加载
+    - babel-loader, <Bundle> </Bundle>
+    - react-loadable
+  - 按功能进行按需加载
 
 ### 缓存
+  ```
+    //保证vendor的hash值不改变
+    new webpack.HashedModuleIdsPlugin(),
+    //保证vendor的hash值不改变，必须在vendor后面引用
+    new webpack.optimize.CommonsChunkPlugin({
+        name: 'runtime'
+    })
+  ```
 
 ### index.html模板
+  - html-webpack-plugin
 
 ### 提取公共代码
+  ```
+  entry: {
+    app: [
+      'react-hot-loader/patch',
+      path.join(__dirname, 'src/index.js')
+    ],
+    vender: ['react','react-dom','react-router-dom','redux','react-redux']
+  }
+
+   new webpack.optimize.CommonsChunkPlugin({
+      name: 'vender'
+    })
+  ```
 
 
 
